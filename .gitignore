@@ -1,0 +1,75 @@
+# =========================
+# Python
+# =========================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# =========================
+# Virtual environments
+# =========================
+
+.venv/
+venv/
+env/
+
+# =========================
+# Environment variables
+# =========================
+
+.env
+.env.*
+
+# =========================
+# MLflow
+# =========================
+
+mlartifacts/
+mlruns/
+mlflow.db
+
+# =========================
+# Optuna
+# =========================
+
+optuna.db
+
+# =========================
+# Model / checkpoint artifacts
+# =========================
+
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+
+# =========================
+# Jupyter
+# =========================
+
+.ipynb_checkpoints/
+
+# =========================
+# VS Code
+# =========================
+
+.vscode/
+
+# =========================
+# OS
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# Experimental / local files
+experiment.ipynb
+experimental_model.py
+
+# Local datasets
+metadata/
+/data/
+
+# Generated artifacts
+artifacts/
