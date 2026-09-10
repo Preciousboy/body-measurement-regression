@@ -3,7 +3,7 @@ from io import BytesIO
 import numpy as np
 import torch
 
-from PIL import Image
+from PIL import Image, ImageOps
 from torchvision.models.segmentation import (
     deeplabv3_resnet50,
     DeepLabV3_ResNet50_Weights
@@ -132,9 +132,10 @@ def load_image_from_bytes(image_bytes: bytes) -> Image.Image:
     """
     Convert uploaded file bytes into a PIL RGB image.
     """
+    image = Image.open(BytesIO(image_bytes))
 
-    image = Image.open(
-        BytesIO(image_bytes)
-        )
+    image = ImageOps.exif_transpose(
+        image
+    )
 
     return image.convert("RGB")
