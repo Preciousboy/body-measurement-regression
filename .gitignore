@@ -66,6 +66,8 @@ Thumbs.db
 # Experimental / local files
 experiment.ipynb
 experimental_model.py
+src/serving/debug_segmentation.py
+src/serving/test_registered_model.py
 
 # Local datasets
 metadata/
