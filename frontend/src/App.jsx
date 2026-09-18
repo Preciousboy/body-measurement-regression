@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const API_URL = "http://16.170.169.54:8000/predict";
+const API_URL = "https://d125vjt3ztpyh.cloudfront.net/predict";
 
 function App() {
   const [frontImage, setFrontImage] = useState(null);
