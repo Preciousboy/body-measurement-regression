@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const API_URL = "https://d125vjt3ztpyh.cloudfront.net/predict";
+const API_URL = import.meta.env.API_URL;
 
 function App() {
   const [frontImage, setFrontImage] = useState(null);
@@ -68,18 +68,23 @@ function App() {
   return (
     <div style={styles.page}>
       <div style={styles.container}>
-        <h1 style={styles.title}>BodyM Regression system</h1>
-
-        <p style={styles.subtitle}>A Body Measurement Prediction</p>
+        <h1>BodyM Regression system</h1>
 
         <p style={styles.description}>
           Upload a front and side photo to estimate body measurements.
+        </p>
+        <p style={styles.alert}>
+          Make sure you upload an image showing your full height just like the
+          images beside front photo and side photo
         </p>
 
         <div style={styles.uploadContainer}>
           {/* Front Photo */}
           <div style={styles.uploadBox}>
-            <h3>Front Photo</h3>
+            <div style={styles.photo}>
+              <h3>Front Photo</h3>
+              <img src="front.png" alt="front image" style={styles.image} />
+            </div>
 
             {frontPreview ? (
               <img
@@ -88,14 +93,19 @@ function App() {
                 style={styles.preview}
               />
             ) : (
-              <div style={styles.placeholder}>No photo selected</div>
+              <div style={styles.placeholder}>
+                <div>
+                  <p>No photo selected</p>
+                  <p style={styles.alert}>Image format jpeg, jpg, png, webp</p>
+                </div>
+              </div>
             )}
 
             <label style={styles.uploadButton}>
               Choose Front Photo
               <input
                 type="file"
-                accept="image/jpeg,image/png,image/webp"
+                accept="image/jpeg,image/jpg,image/png,image/webp"
                 onChange={(e) => handleImageChange(e, "front")}
                 style={{ display: "none" }}
               />
@@ -104,7 +114,10 @@ function App() {
 
           {/* Side Photo */}
           <div style={styles.uploadBox}>
-            <h3>Side Photo</h3>
+            <div style={styles.photo}>
+              <h3>Side Photo</h3>
+              <img src="side.png" alt="front image" style={styles.image} />
+            </div>
 
             {sidePreview ? (
               <img
@@ -113,14 +126,19 @@ function App() {
                 style={styles.preview}
               />
             ) : (
-              <div style={styles.placeholder}>No photo selected</div>
+              <div style={styles.placeholder}>
+                <div>
+                  <p>No photo selected</p>
+                  <p style={styles.alert}>Image format jpeg, jpg, png, webp</p>
+                </div>
+              </div>
             )}
 
             <label style={styles.uploadButton}>
               Choose Side Photo
               <input
                 type="file"
-                accept="image/jpeg,image/png,image/webp"
+                accept="image/jpeg,image/jpg,image/png,image/webp"
                 onChange={(e) => handleImageChange(e, "side")}
                 style={{ display: "none" }}
               />
@@ -134,7 +152,7 @@ function App() {
           disabled={loading}
           style={styles.predictButton}
         >
-          {loading ? "Predicting..." : "Predict Measurements"}
+          {loading ? "Fetching measurement..." : "Get Measurements"}
         </button>
 
         {/* Error */}
@@ -183,19 +201,20 @@ const styles = {
     textAlign: "center",
   },
 
-  title: {
-    fontSize: "42px",
-    marginBottom: "5px",
-  },
+  // title: {
+  //   fontSize: "42px",
+  //   marginBottom: "25px",
+  // },
 
-  subtitle: {
-    fontSize: "22px",
+  alert: {
+    fontSize: "15px",
+    color: "red",
     marginTop: "0",
   },
 
   description: {
     color: "#666",
-    marginBottom: "35px",
+    marginBottom: "10px",
   },
 
   uploadContainer: {
@@ -210,6 +229,17 @@ const styles = {
     border: "2px dashed #ccc",
     borderRadius: "12px",
     padding: "20px",
+  },
+
+  photo: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "30px",
+  },
+  image: {
+    width: "40px",
+    height: "60px",
   },
 
   placeholder: {
