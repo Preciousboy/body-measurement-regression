@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const API_URL = import.meta.env.API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 function App() {
   const [frontImage, setFrontImage] = useState(null);
@@ -44,7 +44,7 @@ function App() {
     formData.append("side_image", sideImage);
 
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(`${API_URL}`, {
         method: "POST",
         body: formData,
       });
